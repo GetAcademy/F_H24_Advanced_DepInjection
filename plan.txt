@@ -1,0 +1,12 @@
+Chat og Dependency Inversion
+1. Intro til eksemplet
+2. Foresøke å dele opp i separat prosjekt for server
+3. Introduksjon Dependency Inversion generelt
+4. Anvende Dependency Inversion for separat Chat Server
+
+Telle linjer som inneholder bestemt tekst
+5. Intro til eksemplet
+6. Hvorfor bryter dette Single Responsibility Principle?
+7. Skrive om med Dependency Inversion og Dependency Injection - Service-klasse
+8. Andre linje-kilder, manuell mock
+9. Unit testing og Moq-rammeverket
