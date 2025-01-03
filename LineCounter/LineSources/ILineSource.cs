@@ -2,6 +2,6 @@
 {
     public interface ILineSource
     {
-        public string GetNextLine();
+        public string? GetNextLine();
     }
 }

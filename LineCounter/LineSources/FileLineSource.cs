@@ -8,7 +8,7 @@
         {
             _reader = new StreamReader(filename);
         }
-        public string GetNextLine()
+        public string? GetNextLine()
         {
             return _reader.ReadLine();
         }

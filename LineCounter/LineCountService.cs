@@ -2,32 +2,27 @@
 
 namespace LineCounter
 {
-    public class LineCountService
+    public class LineCountService : ILineCountService
     {
         private readonly ILineSource _lineSource;
+        private readonly ITextMatchService _textMatchService;
 
-        public LineCountService(ILineSource lineSource)
+        public LineCountService(ILineSourceFactory lineSourceFactory, ITextMatchService textMatchService)
         {
-            _lineSource = lineSource;
+            _lineSource = lineSourceFactory.CreateWebLineSource("https://www.vg.no/nyheter/i/nybAQd/lo-ber-om-at-nho-blir-med-paa-erna-solbergs-fredning-av-sykeloennsordninge");
+            _textMatchService = textMatchService;
         }
 
         public LineStats GetStats(string searchText)
         {
-            //using var reader = new StreamReader("vgsak.txt");
-            var matchingLineCount = 0;
-            var totalLineCount = 0;
             var line = _lineSource.GetNextLine();
             while (line != null)
             {
-                if (line.Contains(searchText))
-                {
-                    matchingLineCount++;
-                }
-
-                totalLineCount++;
+                _textMatchService.GatherMatchStats(line, searchText);
                 line = _lineSource.GetNextLine();
             }
-            return new LineStats(matchingLineCount, totalLineCount, searchText);
+            
+            return new LineStats(_textMatchService.MatchingLineCount, _textMatchService.TotalLineCount, searchText);
         }
     }
 }

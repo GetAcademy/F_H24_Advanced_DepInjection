@@ -2,7 +2,7 @@
 {
     internal class KeyboardLineSource : ILineSource
     {
-        public string GetNextLine()
+        public string? GetNextLine()
         {
             Console.Write("Skriv tekst: ");
             var text = Console.ReadLine();

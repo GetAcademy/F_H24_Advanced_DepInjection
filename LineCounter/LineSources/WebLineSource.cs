@@ -8,11 +8,12 @@ namespace LineCounter.LineSources
 
         public WebLineSource(string url)
         {
-            var webClient = new WebClient();
-            var stream = webClient.OpenRead(url);
+            var httpClient = new HttpClient();
+            var stream = httpClient.GetStreamAsync(url).Result;
             _reader = new StreamReader(stream);
         }
-        public string GetNextLine()
+        
+        public string? GetNextLine()
         {
             return _reader.ReadLine();
         }
