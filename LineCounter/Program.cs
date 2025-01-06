@@ -6,9 +6,8 @@ using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddTransient<ILineCountService, LineCountService>();
-builder.Services.AddTransient<ILineSourceFactory, LineSourceFactory>();
-builder.Services.AddTransient<ITextMatchService, TextMatchService>();
+builder.Services.AddLineCountDependencies();
+
 var host = builder.Build();
 
 var service = host.Services.GetRequiredService<ILineCountService>();
